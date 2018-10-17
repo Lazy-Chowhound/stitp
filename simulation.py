@@ -89,11 +89,13 @@ if __name__ == "__main__":
         if t % 10 == 0:
             improved_one_turn(sensor)
             function.remove_deadnodes(sensor)
-        if t % 20 == 0:
-            all_active_nodes = function.get_all_active_nodes(sensor)
-            function.paint_rectangle(painter)
-            function.paint_nodes(all_active_nodes, painter)
-            time.sleep(30)
+        # 绘制存活的节点
+        # if t == 40 or t == 70 or t == 80 or t == 95:
+        #     all_active_nodes = function.get_all_active_nodes(sensor)
+        #     function.paint_rectangle(painter)
+        #     function.paint_nodes(all_active_nodes, painter)
+        #     time.sleep(30)
+        #     painter.reset()
 
     t = 0
     # 原有的算法
@@ -106,17 +108,20 @@ if __name__ == "__main__":
         if t % 10 == 0:
             one_turn(sensor2)
             function.remove_deadnodes(sensor2)
-        if t % 20 == 0:
-            all_active_nodes = function.get_all_active_nodes(sensor)
-            function.paint_rectangle(painter)
-            function.paint_nodes(all_active_nodes, painter)
-            time.sleep(30)
+        # 绘制存活的节点
+        # if t == 40 or t == 70 or t == 80 or t == 95:
+        #     all_active_nodes = function.get_all_active_nodes(sensor2)
+        #     function.paint_rectangle(painter)
+        #     function.paint_nodes(all_active_nodes, painter)
+        #     time.sleep(30)
+        #     painter.reset()
 
-    # line1, = pyplot.plot(x1, y1, linewidth=2)
-    # line2, = pyplot.plot(x2, y2, linewidth=2)
-    # legend = pyplot.legend([line1, line2], ['改进的算法', '原来的算法'], loc='upper right')
-    # pyplot.title(u"节点存活数目随时间变化图", fontsize=23)
-    # pyplot.xlabel("时间")
-    # pyplot.ylabel("生存节点数")
-    # pyplot.savefig("picture.jpg")
-    # pyplot.show()
+    # 绘制存活节点图表
+    line1, = pyplot.plot(x1, y1, linewidth=2)
+    line2, = pyplot.plot(x2, y2, linewidth=2)
+    legend = pyplot.legend([line1, line2], ['改进的算法', '原来的算法'], loc='upper right')
+    pyplot.title(u"节点存活数目随时间变化图", fontsize=23)
+    pyplot.xlabel("时间")
+    pyplot.ylabel("生存节点数")
+    pyplot.savefig("picture.jpg")
+    pyplot.show()
