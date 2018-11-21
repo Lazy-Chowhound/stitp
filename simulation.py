@@ -5,7 +5,7 @@ import matplotlib.pyplot as pyplot
 import matplotlib
 import copy
 import turtle
-import time
+
 
 # 使matplotlib能正常显示中文
 matplotlib.rcParams['font.sans-serif'] = ['SimHei']
