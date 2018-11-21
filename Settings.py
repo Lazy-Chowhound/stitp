@@ -1,4 +1,5 @@
 import math
+
 # 节点个数
 node_count = 1500
 # 节点密度保持在50
@@ -15,3 +16,13 @@ Eamp = 0.0000000001
 p1 = 0.04
 # 休眠功率
 p2 = 0.015
+
+
+def set_a(_a):
+    global a
+    a = _a
+
+
+def set_P(_P):
+    global P
+    P = _P
