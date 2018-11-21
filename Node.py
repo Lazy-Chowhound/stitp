@@ -3,6 +3,8 @@ import random
 
 class Node():
     def __init__(self):
+        # 部署范围
+        self.scope = 0
         # 通信半径
         self.TRANSMISSION_RANGE = 20
         # 感知半径
@@ -19,15 +21,21 @@ class Node():
         # 节点是否存活
         self.is_alive = True
 
+    # 设置部署范围
+    def set_scope(self, scope):
+        self.scope = scope
+
     # 随机部署到区域里
     def random_position(self):
-        self.x = random.randint(0, 160)
-        self.y = random.randint(0, 160)
+        self.x = random.randint(0, self.scope)
+        self.y = random.randint(0, self.scope)
 
     # 节点休眠
     def sleep(self):
         self.is_asleep = True
+        self.is_changed = 1
 
     # 节点苏醒
     def revive(self):
         self.is_asleep = False
+        self.is_changed = 1

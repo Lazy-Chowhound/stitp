@@ -4,16 +4,17 @@ import function
 import matplotlib.pyplot as pyplot
 import matplotlib
 import copy
+import math
 import turtle
-
 
 # 使matplotlib能正常显示中文
 matplotlib.rcParams['font.sans-serif'] = ['SimHei']
 matplotlib.rcParams['axes.unicode_minus'] = False
 
+
 # 设置画布，画笔
-turtle.setup(600, 400)
-painter = turtle.Pen()
+# turtle.setup(600, 400)
+# painter = turtle.Pen()
 
 
 def improved_one_turn(sensor):
@@ -58,6 +59,11 @@ def one_turn(sensor):
 
 
 if __name__ == "__main__":
+    # 节点个数
+    node_count = 3000
+    # 节点密度保持在50
+    scope = round(math.sqrt(node_count * 50))
+    # print(node_count, scope)
     # 绘图横纵坐标数据
     x1 = []
     x2 = []
@@ -67,8 +73,9 @@ if __name__ == "__main__":
     t = 0
     # 所有节点列表
     sensor = []
-    for i in range(500):
+    for i in range(node_count):
         node = Node.Node()
+        node.set_scope(scope)
         node.random_position()
         sensor.append(node)
     # 所有节点以P的概率苏醒
@@ -123,5 +130,5 @@ if __name__ == "__main__":
     pyplot.title(u"节点存活数目随时间变化图", fontsize=23)
     pyplot.xlabel("时间")
     pyplot.ylabel("生存节点数")
-    pyplot.savefig("picture.jpg")
+    pyplot.savefig("picture" + str(node_count) + ".jpg")
     pyplot.show()

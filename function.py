@@ -130,7 +130,7 @@ def random_select(unchanged_active_nodes):
     """
     select_num = random.randint(0, len(unchanged_active_nodes) - 1)
     unchanged_active_nodes[select_num].sleep()
-    unchanged_active_nodes[select_num].is_changed = 1
+    # unchanged_active_nodes[select_num].is_changed = 1
 
 
 def consume_energy_per_second(sensor):
