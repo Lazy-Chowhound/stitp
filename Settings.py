@@ -6,9 +6,9 @@ scope = round(math.sqrt(node_count * 50))
 # 区域范围
 WIDTH = 300
 # 邻近区域系数
-a = 0.8
+a = 0.9
 # 活跃系数
-P = 0.3
+P = 0.9
 Eelec = 0.0000005
 Eamp = 0.0000000001
 # 工作功率
