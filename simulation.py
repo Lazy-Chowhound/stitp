@@ -126,5 +126,5 @@ if __name__ == "__main__":
     pyplot.title(u"节点存活数目随时间变化图", fontsize=23)
     pyplot.xlabel("时间")
     pyplot.ylabel("生存节点数")
-    pyplot.savefig("picture" + str(Settings.node_count) + ".jpg")
+    pyplot.savefig("picture" + str(Settings.node_count) + " P=" + str(Settings.P) + ".jpg")
     pyplot.show()
