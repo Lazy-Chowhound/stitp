@@ -4,7 +4,7 @@ import function
 import matplotlib.pyplot as pyplot
 import matplotlib
 import copy
-import math
+import Settings
 import turtle
 
 # 使matplotlib能正常显示中文
@@ -39,8 +39,9 @@ def improved_one_turn(sensor):
                     # 节点继续休眠
                     node.sleep()
                 else:
-                    node.revive()
-                    function.random_select(unchanged_active_nodes)
+                    function.choose_sleep(node)
+                    if not node.is_asleep:
+                        function.random_select(unchanged_active_nodes)
     function.change(sensor)
 
 
@@ -59,11 +60,6 @@ def one_turn(sensor):
 
 
 if __name__ == "__main__":
-    # 节点个数
-    node_count = 3000
-    # 节点密度保持在50
-    scope = round(math.sqrt(node_count * 50))
-    # print(node_count, scope)
     # 绘图横纵坐标数据
     x1 = []
     x2 = []
@@ -73,9 +69,9 @@ if __name__ == "__main__":
     t = 0
     # 所有节点列表
     sensor = []
-    for i in range(node_count):
+    for i in range(Settings.node_count):
         node = Node.Node()
-        node.set_scope(scope)
+        node.set_scope(Settings.scope)
         node.random_position()
         sensor.append(node)
     # 所有节点以P的概率苏醒
@@ -130,5 +126,5 @@ if __name__ == "__main__":
     pyplot.title(u"节点存活数目随时间变化图", fontsize=23)
     pyplot.xlabel("时间")
     pyplot.ylabel("生存节点数")
-    pyplot.savefig("picture" + str(node_count) + ".jpg")
+    pyplot.savefig("picture" + str(Settings.node_count) + ".jpg")
     pyplot.show()

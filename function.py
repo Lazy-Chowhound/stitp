@@ -1,18 +1,6 @@
 import random
 import math
-
-# 区域范围
-WIDTH = 300
-# 邻近区域系数
-a = 0.8
-# 活跃系数
-P = 0.7
-Eelec = 0.0000005
-Eamp = 0.0000000001
-# 工作功率
-p1 = 0.04
-# 休眠功率
-p2 = 0.015
+import Settings
 
 
 def find_distance(node1, node2):
@@ -22,10 +10,9 @@ def find_distance(node1, node2):
     :param node2:
     :return: 距离（保留两位小数）
     """
-    global Eamp, Eelec
     result = math.sqrt((node2.x - node1.x) * (node2.x - node1.x) + (node2.y - node1.y) * (node2.y - node1.y))
     # 通信消耗能量
-    energy = 240 * Eelec + Eamp * 240 * result * result + Eelec * 240
+    energy = 240 * Settings.Eelec + Settings.Eamp * 240 * result * result + Settings.Eelec * 240
     node1.energy = node1.energy - energy
     node2.energy = node2.energy - energy
     return round(result, 2)
@@ -38,9 +25,8 @@ def judge_close(node1, node2):
     :param node2:
     :return:
     """
-    global a
     distance = find_distance(node1, node2)
-    scope = a * node1.PERCEIVED_RADIUS
+    scope = Settings.a * node1.PERCEIVED_RADIUS
     if distance <= scope:
         return True
     else:
@@ -53,14 +39,13 @@ def choose_sleep(node):
     :param node:
     :return:
     """
-    global P
     status = node.is_asleep
     coef = random.randint(1, 10)
     # 节点苏醒
-    if coef <= P * 10:
+    if coef <= Settings.P * 10:
         node.revive()
     # 节点休眠
-    elif coef > P * 10:
+    elif coef > Settings.P * 10:
         node.sleep()
     if node.is_asleep != status:
         node.is_changed = 1
@@ -100,12 +85,11 @@ def get_all_sleeping_nodes(sensor):
     :param sensor:
     :return:节点列表
     """
-    global Eelec
     sleep_nodes = []
     for node in sensor:
         if node.is_asleep:
             sleep_nodes.append(node)
-            node.energy = node.energy - Eelec * 240
+            node.energy = node.energy - Settings.Eelec * 240
     return sleep_nodes
 
 
@@ -130,7 +114,6 @@ def random_select(unchanged_active_nodes):
     """
     select_num = random.randint(0, len(unchanged_active_nodes) - 1)
     unchanged_active_nodes[select_num].sleep()
-    # unchanged_active_nodes[select_num].is_changed = 1
 
 
 def consume_energy_per_second(sensor):
