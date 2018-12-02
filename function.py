@@ -124,11 +124,11 @@ def consume_energy_per_second(sensor):
     """
     for node in sensor:
         if node.is_asleep:
-            node.energy = node.energy - 0.015
+            node.energy = node.energy - Settings.p2
             if node.energy <= 0:
                 node.is_alive = False
         else:
-            node.energy = node.energy - 0.04
+            node.energy = node.energy - Settings.p1
             if node.energy <= 0:
                 node.is_alive = False
 

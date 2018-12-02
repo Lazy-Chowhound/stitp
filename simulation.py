@@ -329,5 +329,5 @@ def compare_algorithm():
 
 if __name__ == "__main__":
     # compare_a()
-    compare_P()
-    # compare_algorithm()
+    # compare_P()
+    compare_algorithm()
